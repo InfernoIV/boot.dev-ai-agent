@@ -1,0 +1,19 @@
+import os
+
+
+path = str
+error = str
+
+
+def check_path(working_directory: str, file_path: str) -> tuple[path, error]:
+    #print(f"get_files_info: '{working_directory}', '{directory}'")
+    absolute_path = os.path.abspath(working_directory)
+    joined_path = os.path.join(absolute_path, file_path)
+    abs_path = os.path.abspath(joined_path)
+    print(f"absolute_path: '{absolute_path}', joined_path: '{joined_path}', abs_path: '{abs_path}'")
+
+    #If the file_path is outside the working_directory, return a string with an error:
+    if not abs_path.startswith(absolute_path): 
+        return None, f'Error: Cannot read "{abs_path}" as it is outside the permitted working directory'
+    #return absolute path, is file and None (no error)
+    return abs_path, None
