@@ -21,7 +21,8 @@ def call_function(function_call_part: types.FunctionCall, verbose: bool = False)
         print(f"Calling function: {function_call_part.name}({function_call_part.args})")
     else:
         #print basic information
-        print(f" - Calling function: {function_call_part.name}")
+        #print(f" - Calling function: {function_call_part.name}")
+        pass
     
     #if requested function does not exist 
     if function_call_part.name not in string_to_function:

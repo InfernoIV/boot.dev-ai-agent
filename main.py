@@ -82,6 +82,7 @@ All paths you provide should be relative to the working directory. You do not ne
             messages.append(candidate.content)
 
         if response.function_calls != None:
+            #for each request
             for function_call in response.function_calls:
                 #call the function and print the result
                 result = call_function(function_call, verbose)
@@ -117,6 +118,19 @@ All paths you provide should be relative to the working directory. You do not ne
     
     return
     
+
+#fix the logging
+import logging
+
+class _NoFunctionCallWarning(logging.Filter):
+    def filter(self, record: logging.LogRecord) -> bool:
+        message = record.getMessage()
+        if "there are non-text parts in the response:" in message:
+            return False
+        else:
+            return True
+
+logging.getLogger("google_genai.types").addFilter(_NoFunctionCallWarning())
 
 #exectue main function
 main()

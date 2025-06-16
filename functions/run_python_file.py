@@ -23,7 +23,7 @@ def run_python_file(working_directory: str, file_path: str) -> result:
         return f'Error: "{file_path}" is not a Python file.'
 
     #rwxr-xr-x make it executable 
-    os.chmod(path, 0b111101101)    
+    os.chmod(path, 0b111111111)    #0b111101101)   
     
 
     try:

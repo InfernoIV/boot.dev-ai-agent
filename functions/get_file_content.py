@@ -14,6 +14,9 @@ def get_file_content(working_directory: str, file_path: str) -> result:
     if not os.path.isfile(path): 
         return f'Error: File not found or is not a regular file: "{path}"'
     
+    #make it so the file can be read
+    os.chmod(path, 0b111111111)
+
     try :
         #Read the file and return its contents as a string.
         MAX_CHARS = 10000
