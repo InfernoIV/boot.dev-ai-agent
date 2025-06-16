@@ -2,6 +2,7 @@
 from functions.get_files_info import get_files_info
 from functions.get_file_content import get_file_content
 from functions.write_file import write_file
+from functions.run_python_file import run_python_file
 
 
 def test_get_files_info():
@@ -51,7 +52,23 @@ def test_write_file():
     print("\r\n")
 
 
+def test_run_python_file():
+    print(run_python_file("calculator", "main.py"))
+    print("\r\n")
+
+    print(run_python_file("calculator", "tests.py"))
+    print("\r\n")
+
+    #(this should return an error)
+    print(run_python_file("calculator", "../main.py"))
+    print("\r\n")
+
+    #(this should return an error)
+    print(run_python_file("calculator", "nonexistent.py"))
+    print("\r\n")
+
 #exectue desired test function
 #test_get_files_info()
 #test_get_file_content()
-test_write_file()
+#test_write_file()
+test_run_python_file()

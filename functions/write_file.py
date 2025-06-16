@@ -7,7 +7,7 @@ result = str
 
 def write_file(working_directory: str, file_path: str, content: str) -> result:
 
-    path, error = check_path(working_directory, file_path)
+    path, error = check_path(working_directory, file_path, "write")
     if error != None:
         return error
     

@@ -7,7 +7,7 @@ result = str
 
 def get_file_content(working_directory: str, file_path: str) -> result:
         
-    path, error = check_path(working_directory, file_path)
+    path, error = check_path(working_directory, file_path, "read")
     if error != None:
         return error
 

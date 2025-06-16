@@ -7,7 +7,7 @@ result = str
 
 def get_files_info(working_directory: str, directory: str = None) -> result:
 
-    path, error = check_path(working_directory, directory)
+    path, error = check_path(working_directory, directory, "read")
     if error != None:
         return error
     
