@@ -1,7 +1,7 @@
 import os, sys
 from dotenv import load_dotenv
 from google import genai
-from google.genai import types
+from google.genai import types # type: ignore
 from schemas import available_functions
 from functions.call_function import call_function 
 
