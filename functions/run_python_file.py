@@ -7,6 +7,7 @@ result = str
 
 
 def run_python_file(working_directory: str, file_path: str) -> result:
+    #print(f"file_path: {file_path}")
     #If the file_path is outside the working directory, return a string with an error:
     path, error = check_path(working_directory, file_path, "execute")
     if error != None:
@@ -36,8 +37,10 @@ def run_python_file(working_directory: str, file_path: str) -> result:
         #add script information
         execution_information.append(f"Ran \"{path}\"")
 
+        #print(f"completed_process: \"{completed_process}\"")
+
         #If no output is produced, return "No output produced."
-        if len(completed_process.stdout) == 0:
+        if len(completed_process.stdout) == 0 and len(completed_process.stderr) == 0:
             #add output
             execution_information.append(f"No output produced.")
             #return information
@@ -53,7 +56,7 @@ def run_python_file(working_directory: str, file_path: str) -> result:
         if completed_process.returncode != 0:
             #add return code
             execution_information.append(f"Process exited with code {completed_process.returncode}")
-
+        
         #return the values in a formatted way
         return "\r\n".join(execution_information)
     

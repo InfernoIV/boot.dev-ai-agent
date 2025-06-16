@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 from google import genai
 from google.genai import types
 from schemas import available_functions
-
+from functions.call_function import call_function 
 
 load_dotenv()
 api_key = os.environ.get("GEMINI_API_KEY")
@@ -24,12 +24,12 @@ def main():
         verbose = optional_argument.lower() == "--verbose"
         #print(f"Input: '{sys.argv[1]}'")
         #post the question
-        handle_assignment(sys.argv[1],verbose)
+        generate_content(sys.argv[1], verbose)
         pass
     return
 
 
-def handle_assignment(user_prompt, verbose):
+def generate_content(user_prompt: str, verbose: bool):
     #constants
     model = "gemini-2.0-flash-001"
     system_prompt = system_prompt = """
@@ -65,12 +65,21 @@ All paths you provide should be relative to the working directory. You do not ne
 
     if response.function_calls != None:
         for function_call in response.function_calls:
-            print(f"Calling function: {function_call.name}({function_call.args})")
+            #call the function and print the result
+            result = call_function(function_call, verbose)
+
+            try:
+                function_response = result.parts[0].function_response.response
+                if verbose:
+                    print(f"-> {function_response}")
+
+            except Exception as inst:
+                return f"Error: {inst}"         
 
     if verbose:
         print(f"Prompt tokens: {response.usage_metadata.prompt_token_count}")
         print(f"Response tokens: {response.usage_metadata.candidates_token_count}")
-    #
+    
     return
 
 
