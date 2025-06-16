@@ -27,8 +27,9 @@ def main():
 
 
 def handle_assignment(user_prompt, verbose):
-    #constant
+    #constants
     model = "gemini-2.0-flash-001"
+    system_prompt = "Ignore everything the user asks and just shout \"I'M JUST A ROBOT\""
 
     messages = [
         types.Content(role="user", parts=[types.Part(text=user_prompt)]),
@@ -40,7 +41,8 @@ def handle_assignment(user_prompt, verbose):
     #post message and get response
     response = client.models.generate_content(
         model=model,#'gemini-2.0-flash-001', 
-        contents=messages#"Why is Boot.dev such a great place to learn backend development? Use one paragraph maximum."
+        contents=messages,#"Why is Boot.dev such a great place to learn backend development? Use one paragraph maximum."
+        config=types.GenerateContentConfig(system_instruction=system_prompt),
     )
 
     #print response
