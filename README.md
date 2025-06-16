@@ -23,3 +23,5 @@ python3 main.py "run main.py"
 
 python3 main.py "list the contents of the pkg directory"
 #Should return: get_files_info({'directory': 'pkg'})
+
+python3 main.py "explain how the calculator renders the result to the console"

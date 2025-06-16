@@ -26,7 +26,7 @@ def call_function(function_call_part: types.FunctionCall, verbose: bool = False)
     #if requested function does not exist 
     if function_call_part.name not in string_to_function:
         #stop
-        return  types.Content(
+        return types.Content(
             role="tool",
             parts=[
                 types.Part.from_function_response(

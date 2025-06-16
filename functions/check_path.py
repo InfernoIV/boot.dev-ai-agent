@@ -6,8 +6,11 @@ error = str
 
 
 def check_path(working_directory: str, file_path: str, action_type: str) -> tuple[path, error]:
-    #print(f"get_files_info: '{working_directory}', '{directory}'")
     absolute_path = os.path.abspath(working_directory)
+    #if no path specified, return the working directory
+    if file_path == None:
+        return absolute_path, None
+
     joined_path = os.path.join(absolute_path, file_path)
     abs_path = os.path.abspath(joined_path)
     #print(f"absolute_path: '{absolute_path}', joined_path: '{joined_path}', abs_path: '{abs_path}'")
